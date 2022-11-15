@@ -1,0 +1,121 @@
+<template>
+  <div>
+    <div class="column-title">
+      <form class="column-form" @submit.prevent="editColumnTitle">
+        <input class="input-field" type="text" v-model.trim="newTitle" />
+      </form>
+      <b-button @click="deleteColumn" id="icon-button"
+        ><b-icon icon="trash" id="icon"></b-icon
+      ></b-button>
+    </div>
+  </div>
+</template>
+
+<script>
+import { mapActions } from "vuex";
+export default {
+  props: {
+    column: {
+      type: Object,
+      required: true,
+    },
+    columns: {
+      type: Array,
+      required: true,
+    },
+  },
+  data() {
+    return {
+      newTitle: this.column.title,
+    };
+  },
+  methods: {
+    ...mapActions([
+      "getColumns",
+      "removeColumn",
+      "updateColumn",
+      "addColumn",
+      "removeCard",
+    ]),
+    async deleteColumn() {
+      this.$isLoading(true);
+      console.log(this.column);
+      if (this.column.cardsArray.length >= 1) {
+        for (let card of this.column.cardsArray) {
+          await this.removeCard(card.card_id);
+        }
+      }
+      await this.removeColumn({
+        column_id: this.column.column_id,
+        orderId: this.column.orderId,
+      });
+
+      await this.getColumns();
+      this.$isLoading(false);
+    },
+    async editColumnTitle() {
+      this.$isLoading(true);
+      await this.updateColumn({
+        column_id: this.column.column_id,
+        createdAt: this.column.createdAt,
+        title: this.newTitle,
+        orderId: this.column.orderId,
+      });
+      document.activeElement.blur();
+      // await this.getColumns();
+      //this.$forceUpdate();
+      this.$isLoading(false);
+    },
+  },
+};
+</script>
+
+<style>
+.column-form {
+  width: 230px;
+  height: auto;
+}
+
+.column-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5px 5px 5px 0px;
+}
+
+.input-field {
+  font-weight: bold;
+  padding-left: 5px;
+  border: none;
+  height: 36px;
+  background: inherit;
+  margin-right: 2px;
+  color: rgb(255, 255, 255);
+  transition: color 0.5s cubic-bezier(0.4, 0, 0.2, 1),
+    background 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.input-field:focus {
+  background: rgb(255, 255, 255);
+  border: 1px solid rgb(255, 255, 255);
+  color: black;
+}
+
+#icon-button {
+  color: black;
+  background-color: rgb(255, 255, 255);
+  border-color: rgb(216, 183, 139);
+}
+
+#icon-button:hover {
+  background-color: rgb(216, 183, 139);
+  border-color: rgb(216, 183, 139);
+}
+
+#icon:hover {
+  background-color: rgb(216, 183, 139);
+  border-color: rgb(216, 183, 139);
+  color: white;
+  opacity: 0.55;
+}
+</style>
