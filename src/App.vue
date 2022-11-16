@@ -35,6 +35,8 @@ export default {
           }
         });
       });
+      this.data.sort((a, b) => (a.orderId > b.orderId ? 1 : -1));
+
       return this.data;
     },
   },

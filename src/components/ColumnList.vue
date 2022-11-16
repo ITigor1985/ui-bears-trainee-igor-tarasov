@@ -74,19 +74,30 @@ export default {
     async updateColumns(event, columns) {
       this.$isLoading(true);
 
-      //console.log(event.moved);
       for (let column of columns) {
-        // console.log("columns.indexOf(column)", columns.indexOf(column));
-        //console.log("(column)", column);
-        await this.updateColumn({
-          column_id: column.column_id,
-          createdAt: column.createdAt,
-          title: column.title,
-          orderId: columns.indexOf(column),
-        });
+        if (
+          column.orderId === event.moved.newIndex ||
+          column.orderId === event.moved.oldIndex
+        ) {
+          if (column.orderId === event.moved.newIndex) {
+            await this.updateColumn({
+              column_id: column.column_id,
+              createdAt: column.createdAt,
+              title: column.title,
+              orderId: event.moved.oldIndex,
+            });
+          } else {
+            await this.updateColumn({
+              column_id: column.column_id,
+              createdAt: column.createdAt,
+              title: column.title,
+              orderId: event.moved.newIndex,
+            });
+          }
+        }
         this.$forceUpdate();
       }
-      //await this.getColumns();
+      await this.getColumns();
       this.$isLoading(false);
     },
 
