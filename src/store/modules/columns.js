@@ -14,7 +14,6 @@ export default {
   actions: {
     async getColumns({ commit }) {
       try {
-        console.log("Hello");
         const res = await axios.get("/columns");
         commit("updateColumnList", res.data);
       } catch (error) {
@@ -47,6 +46,7 @@ export default {
 
     async updateColumn({ commit }, { column_id, createdAt, title, orderId }) {
       try {
+        console.log("orderId", orderId);
         const res = await axios.put(`/column/${column_id}`, {
           title,
           orderId,

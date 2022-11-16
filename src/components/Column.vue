@@ -93,6 +93,11 @@ export default {
   color: rgb(255, 255, 255);
   transition: color 0.5s cubic-bezier(0.4, 0, 0.2, 1),
     background 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+
+  width: 200px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .input-field:focus {
