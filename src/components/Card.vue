@@ -16,14 +16,17 @@
     >
       <b-form @submit.prevent="edit">
         <b-form-group label="Card Title">
-          <b-form-input v-model.trim="cardTitle" />
+          <b-form-input class="input-field" v-model.trim="cardTitle" />
         </b-form-group>
         <b-form-group label="Card Description">
-          <b-form-input v-model.trim="cardDesc" />
+          <b-form-textarea
+            placeholder="Enter description..."
+            v-model.trim="cardDesc"
+          ></b-form-textarea>
         </b-form-group>
         <b-button
           type="submit"
-          variant="success"
+          variant="primary"
           @click="$bvModal.hide('modal-win')"
           >OK</b-button
         >
@@ -34,7 +37,7 @@
       <div>Please fill in both of the fields when editing a card.</div>
       <b-button
         type="submit"
-        variant="success"
+        variant="primary"
         @click="$bvModal.hide('modal-err')"
         >OK</b-button
       >

@@ -72,17 +72,17 @@ export default {
 }
 
 header {
-  background: #f79720;
   /* background: -webkit-linear-gradient(top, #2040f7, #ffd200);
   background: -moz-linear-gradient(top, #2040f7, #ffd200);
   background: linear-gradient(to bottom, #2040f7, #ffd200); */
-  background-color: aliceblue;
+  background-color: #3b6ba9;
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 60px;
   z-index: 1;
+  color: #ebf22e;
 }
 
 .app-body {
