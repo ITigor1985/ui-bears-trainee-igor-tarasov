@@ -64,7 +64,7 @@ export default {
         });
         this.title = "";
         this.showInputField = false;
-        // await this.getColumns();
+        await this.getColumns();
 
         this.$isLoading(false);
         this.$forceUpdate();
