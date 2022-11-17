@@ -45,10 +45,38 @@ export default {
           await this.removeCard(card.card_id);
         }
       }
+
+      const count = this.columns.indexOf(this.column);
+      console.log("count", count);
+
       await this.removeColumn({
         column_id: this.column.column_id,
         orderId: this.column.orderId,
       });
+
+      // for (let index in this.columns) {
+      //   console.log("index", index);
+      //   if (column > count) {
+      //     await this.updateColumn({
+      //       column_id: this.column.column_id,
+      //       createdAt: this.column.createdAt,
+      //       title: this.newTitle,
+      //       orderId: index,
+      //     });
+      //   }
+      // }
+
+      for (let i = 0; i < this.columns.length; i++) {
+        console.log(this.columns[i]);
+        if (i > count) {
+          await this.updateColumn({
+            column_id: this.columns[i].column_id,
+            createdAt: this.columns[i].createdAt,
+            title: this.columns[i].title,
+            orderId: i - 1,
+          });
+        }
+      }
 
       await this.getColumns();
       this.$isLoading(false);
@@ -94,7 +122,7 @@ export default {
   transition: color 0.5s cubic-bezier(0.4, 0, 0.2, 1),
     background 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 
-  width: 200px;
+  width: 220px;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;

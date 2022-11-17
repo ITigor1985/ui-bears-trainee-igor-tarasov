@@ -24,7 +24,6 @@ export default {
 
     async addColumn({ commit }, { title, orderId }) {
       try {
-        console.log("Hello");
         const res = await axios.post("/column", {
           title,
           orderId,

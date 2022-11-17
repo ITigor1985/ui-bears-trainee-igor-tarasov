@@ -130,8 +130,10 @@ export default {
 .card-box {
   white-space: nowrap;
   overflow: hidden;
-
   padding-top: 3px;
+
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 
 .icon-button {
