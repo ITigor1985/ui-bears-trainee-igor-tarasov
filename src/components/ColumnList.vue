@@ -122,7 +122,7 @@ export default {
             orderId: column.cardsArray.indexOf(card.orderId),
           });
         } else {
-          this.$forceUpdate();
+          // this.$forceUpdate();
           await this.editCard({
             card_id: card.card_id,
             column_id: column.column_id,
@@ -144,7 +144,7 @@ export default {
             orderId: column.cardsArray.indexOf(card.orderId),
           });
         } else {
-          this.$forceUpdate();
+          //this.$forceUpdate();
           await this.editCard({
             card_id: card.card_id,
             column_id: column.column_id,
@@ -170,7 +170,7 @@ export default {
                 orderId: col.cardsArray.indexOf(card),
               });
             } else {
-              this.$forceUpdate();
+              // this.$forceUpdate();
               await this.editCard({
                 card_id: card.card_id,
                 column_id: col.column_id,
@@ -184,8 +184,7 @@ export default {
           }
         }
       }
-
-      await this.getCards();
+      //await this.getCards();
       this.$forceUpdate();
       this.$isLoading(false);
     },
