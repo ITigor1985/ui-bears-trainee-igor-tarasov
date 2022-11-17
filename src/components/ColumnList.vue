@@ -112,7 +112,9 @@ export default {
       if (event.added) {
         card = event.added.element; //карта которую перетаскиваем
         column = targetColumn; // столбец в который перетаскиваем
-
+        if (card.description === "") {
+          card.description = "Description";
+        }
         this.$forceUpdate();
         await this.editCard({
           card_id: card.card_id,
@@ -124,6 +126,9 @@ export default {
       } else if (event.moved) {
         card = event.moved.element;
         column = targetColumn;
+        if (card.description === "") {
+          card.description = "Description";
+        }
         this.$forceUpdate();
         await this.editCard({
           card_id: card.card_id,
