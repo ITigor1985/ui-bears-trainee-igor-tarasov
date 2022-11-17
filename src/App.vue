@@ -62,10 +62,12 @@ export default {
         this.data[index].cardsArray = [];
         cards.forEach((card) => {
           if (column.column_id === card.column_id) {
-            // if (card.description === "Description") {
-            //   card.description = "";
-            // }
-            this.data[index].cardsArray.push(card);
+            if (card.description === "Description") {
+              card.description = "";
+              this.data[index].cardsArray.push(card);
+            } else {
+              this.data[index].cardsArray.push(card);
+            }
           }
         });
       });

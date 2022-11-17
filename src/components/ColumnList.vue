@@ -105,7 +105,6 @@ export default {
       this.$isLoading(true);
       let card;
       let column;
-      const Description = "Description";
 
       // check type of action
       // performed on a card and
@@ -113,33 +112,47 @@ export default {
       if (event.added) {
         card = event.added.element; //карта которую перетаскиваем
         column = targetColumn; // столбец в который перетаскиваем
-        console.log(card);
-        // if (card.description === "") {
-        //   card.description = "Description";
-        // }
-        this.$forceUpdate();
-        await this.editCard({
-          card_id: card.card_id,
-          column_id: column.column_id,
-          title: card.title,
-          desc: card.description,
-          orderId: column.cardsArray.indexOf(card.orderId),
-        });
+
+        if (card.description === "") {
+          await this.editCard({
+            card_id: card.card_id,
+            column_id: column.column_id,
+            title: card.title,
+            desc: "Description",
+            orderId: column.cardsArray.indexOf(card.orderId),
+          });
+        } else {
+          this.$forceUpdate();
+          await this.editCard({
+            card_id: card.card_id,
+            column_id: column.column_id,
+            title: card.title,
+            desc: card.description,
+            orderId: column.cardsArray.indexOf(card.orderId),
+          });
+        }
       } else if (event.moved) {
         card = event.moved.element;
         column = targetColumn;
-        // if (card.description === "") {
-        //   card.description = "Description";
-        // }
-        console.log(event.moved.element);
-        this.$forceUpdate();
-        await this.editCard({
-          card_id: card.card_id,
-          column_id: column.column_id,
-          title: card.title,
-          desc: card.description,
-          orderId: column.cardsArray.indexOf(card),
-        });
+
+        if (card.description === "") {
+          await this.editCard({
+            card_id: card.card_id,
+            column_id: column.column_id,
+            title: card.title,
+            desc: "Description",
+            orderId: column.cardsArray.indexOf(card.orderId),
+          });
+        } else {
+          this.$forceUpdate();
+          await this.editCard({
+            card_id: card.card_id,
+            column_id: column.column_id,
+            title: card.title,
+            desc: card.description,
+            orderId: column.cardsArray.indexOf(card.orderId),
+          });
+        }
       }
 
       // make sure that all orderId
@@ -148,13 +161,24 @@ export default {
       for (let col of this.columnsArray) {
         for (let card of col.cardsArray) {
           try {
-            await this.editCard({
-              card_id: card.card_id,
-              column_id: col.column_id,
-              title: card.title,
-              desc: card.description,
-              orderId: col.cardsArray.indexOf(card),
-            });
+            if (card.description === "") {
+              await this.editCard({
+                card_id: card.card_id,
+                column_id: col.column_id,
+                title: card.title,
+                desc: "Description",
+                orderId: col.cardsArray.indexOf(card),
+              });
+            } else {
+              this.$forceUpdate();
+              await this.editCard({
+                card_id: card.card_id,
+                column_id: col.column_id,
+                title: card.title,
+                desc: card.description,
+                orderId: col.cardsArray.indexOf(card),
+              });
+            }
           } catch (error) {
             console.log(error);
           }

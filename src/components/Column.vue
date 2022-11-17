@@ -54,20 +54,7 @@ export default {
         orderId: this.column.orderId,
       });
 
-      // for (let index in this.columns) {
-      //   console.log("index", index);
-      //   if (column > count) {
-      //     await this.updateColumn({
-      //       column_id: this.column.column_id,
-      //       createdAt: this.column.createdAt,
-      //       title: this.newTitle,
-      //       orderId: index,
-      //     });
-      //   }
-      // }
-
       for (let i = 0; i < this.columns.length; i++) {
-        console.log(this.columns[i]);
         if (i > count) {
           await this.updateColumn({
             column_id: this.columns[i].column_id,
