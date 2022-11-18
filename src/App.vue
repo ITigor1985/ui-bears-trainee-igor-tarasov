@@ -149,20 +149,6 @@ export default {
   animation-duration: 10s;
 }
 
-/* .parallax > use:nth-child(3) {
- -webkit-animation-delay: -2s;
-  -webkit-animation-duration: 13s;
-  animation-delay: -2s;
-  animation-duration: 13s;
-}
-
-.parallax > use:nth-child(4) {
- -webkit-animation-delay: -3s;
-  -webkit-animation-duration: 20s;
-  animation-delay: -3s;
-  animation-duration: 20s;
-} */
-
 ::-webkit-scrollbar {
   display: none;
 }

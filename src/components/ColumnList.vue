@@ -184,7 +184,7 @@ export default {
           }
         }
       }
-      //await this.getCards();
+      await this.getCards();
       this.$forceUpdate();
       this.$isLoading(false);
     },

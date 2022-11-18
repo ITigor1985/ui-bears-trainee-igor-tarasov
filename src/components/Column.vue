@@ -39,7 +39,7 @@ export default {
     ]),
     async deleteColumn() {
       this.$isLoading(true);
-      console.log(this.column);
+
       if (this.column.cardsArray.length >= 1) {
         for (let card of this.column.cardsArray) {
           await this.removeCard(card.card_id);
@@ -47,7 +47,6 @@ export default {
       }
 
       const count = this.columns.indexOf(this.column);
-      console.log("count", count);
 
       await this.removeColumn({
         column_id: this.column.column_id,
