@@ -37,7 +37,7 @@
 </template>
 
 <script>
-import { mapActions, mapGetters } from "vuex";
+import { mapActions, mapGetters, mapMutations } from "vuex";
 export default {
   props: {
     columns: {
@@ -54,10 +54,11 @@ export default {
   },
   computed: mapGetters(["allColumns"]),
   methods: {
+    ...mapMutations(["updateToggleLoder"]),
     ...mapActions(["getColumns", "addColumn"]),
     async onSubmit() {
       if (this.title.trim()) {
-        this.$isLoading(true);
+        this.updateToggleLoder(true);
         await this.addColumn({
           title: this.title,
           orderId: this.columns.length,
@@ -66,7 +67,7 @@ export default {
         this.showInputField = false;
         //await this.getColumns();
 
-        this.$isLoading(false);
+        this.updateToggleLoder(false);
         this.$forceUpdate();
       } else {
         this.modalErr = true;

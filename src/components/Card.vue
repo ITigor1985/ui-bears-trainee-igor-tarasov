@@ -46,7 +46,7 @@
 </template>
 
 <script>
-import { mapActions } from "vuex";
+import { mapActions, mapMutations } from "vuex";
 export default {
   props: {
     card: {
@@ -67,9 +67,10 @@ export default {
     };
   },
   methods: {
+    ...mapMutations(["updateToggleLoder"]),
     ...mapActions(["getCards", "removeCard", "editCard"]),
     async deleteCard() {
-      this.$isLoading(true);
+      this.updateToggleLoder(true);
       await this.removeCard(this.card.card_id);
       const cardsArray = this.column.cardsArray;
       for (let card of cardsArray) {
@@ -85,11 +86,11 @@ export default {
       }
 
       await this.getCards();
-      this.$isLoading(false);
+      this.updateToggleLoder(false);
     },
     async edit() {
       if (this.cardTitle && this.cardDesc) {
-        this.$isLoading(true);
+        this.updateToggleLoder(true);
         await this.editCard({
           card_id: this.card.card_id,
           column_id: this.card.column_id,
@@ -99,7 +100,7 @@ export default {
         });
 
         await this.getCards();
-        this.$isLoading(false);
+        this.updateToggleLoder(false);
       } else {
         this.modalErr = true;
         this.cardTitle = this.card.title;

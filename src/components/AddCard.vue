@@ -12,7 +12,7 @@
 </template>
 
 <script>
-import { mapActions } from "vuex";
+import { mapActions, mapMutations } from "vuex";
 export default {
   props: {
     column: {
@@ -27,9 +27,10 @@ export default {
   },
   methods: {
     ...mapActions(["getCards", "addCard", "editCard"]),
+    ...mapMutations(["updateToggleLoder"]),
     async onSubmit() {
       if (this.title.trim()) {
-        this.$isLoading(true);
+        this.updateToggleLoder(true);
         await this.addCard({
           title: this.title,
           columnId: this.column.column_id,
@@ -50,7 +51,7 @@ export default {
         document.activeElement.blur();
         // await getCards();
         // this.$forceUpdate();
-        this.$isLoading(false);
+        this.updateToggleLoder(false);
       }
     },
   },
