@@ -69,10 +69,10 @@ export default {
   },
   methods: {
     ...mapActions(["getColumns", "updateColumn", "getCards", "editCard"]),
-    ...mapMutations(["updateColumnList"]),
+    ...mapMutations(["updateColumnList", "updateToggleLoder"]),
 
     async updateColumns(event, columns) {
-      this.$isLoading(true);
+      this.updateToggleLoder(true);
 
       for (let column of columns) {
         if (
@@ -98,11 +98,11 @@ export default {
         this.$forceUpdate();
       }
       await this.getColumns();
-      this.$isLoading(false);
+      this.updateToggleLoder(false);
     },
 
     async updateCards(event, targetColumn) {
-      this.$isLoading(true);
+      this.updateToggleLoder(true);
       let card;
       let column;
 
@@ -186,7 +186,7 @@ export default {
       }
       await this.getCards();
       this.$forceUpdate();
-      this.$isLoading(false);
+      this.updateToggleLoder(false);
     },
   },
 };

@@ -12,7 +12,7 @@
 </template>
 
 <script>
-import { mapActions } from "vuex";
+import { mapActions, mapMutations } from "vuex";
 export default {
   props: {
     column: {
@@ -37,8 +37,9 @@ export default {
       "addColumn",
       "removeCard",
     ]),
+    ...mapMutations(["updateToggleLoder"]),
     async deleteColumn() {
-      this.$isLoading(true);
+      this.updateToggleLoder(true);
 
       if (this.column.cardsArray.length >= 1) {
         for (let card of this.column.cardsArray) {
@@ -65,10 +66,10 @@ export default {
       }
 
       await this.getColumns();
-      this.$isLoading(false);
+      this.updateToggleLoder(false);
     },
     async editColumnTitle() {
-      this.$isLoading(true);
+      this.updateToggleLoder(true);
       await this.updateColumn({
         column_id: this.column.column_id,
         createdAt: this.column.createdAt,
@@ -78,7 +79,7 @@ export default {
       document.activeElement.blur();
       // await this.getColumns();
       //this.$forceUpdate();
-      this.$isLoading(false);
+      this.updateToggleLoder(false);
     },
   },
 };

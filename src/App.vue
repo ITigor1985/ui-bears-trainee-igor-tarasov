@@ -37,22 +37,26 @@
     <div class="app-body">
       <ColumnList :columns="allData" />
     </div>
+    <MyLoader v-if="this.getLoader"></MyLoader>
   </div>
 </template>
 
 <script>
 import ColumnList from "@/components/ColumnList";
-import { mapGetters, mapActions } from "vuex";
+import MyLoader from "@/components/MyLoader.vue";
+import { mapGetters, mapActions, mapMutations } from "vuex";
 
 export default {
   name: "App",
   data() {
     return {
       data: [],
+      toggleLoder: false,
     };
   },
   computed: {
-    ...mapGetters(["allColumns", "allCards"]),
+    ...mapGetters(["allColumns", "allCards", "getLoader"]),
+
     allData() {
       this.data = [];
       const columns = this.allColumns;
@@ -76,15 +80,19 @@ export default {
     },
   },
   async created() {
-    this.$isLoading(true);
+    this.updateToggleLoder(true);
     await this.getColumns();
     await this.getCards();
-    this.$isLoading(false);
+    this.updateToggleLoder(false);
   },
   components: {
     ColumnList,
+    MyLoader,
   },
-  methods: mapActions(["getColumns", "getCards"]),
+  methods: {
+    ...mapActions(["getColumns", "getCards"]),
+    ...mapMutations(["updateToggleLoder"]),
+  },
 };
 </script>
 
