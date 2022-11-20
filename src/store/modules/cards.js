@@ -1,6 +1,8 @@
 import axios from "axios";
 
-axios.defaults.baseURL = "http://localhost:3000/dev";
+//axios.defaults.baseURL = "http://localhost:3000/dev";
+axios.defaults.baseURL =
+  "https://4mz2c0ncza.execute-api.us-east-1.amazonaws.com/dev/";
 
 export default {
   state: {
