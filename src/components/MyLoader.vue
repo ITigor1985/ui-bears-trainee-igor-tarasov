@@ -12,12 +12,12 @@ export default {};
 
 <style scoped>
 .backdrop {
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 100vw;
+  position: fixed;
+  min-width: 100vw;
   height: 100vh;
   background-color: rgba(255, 255, 255, 0.3);
+  top: 0;
+  left: 0;
   display: flex;
   justify-content: center;
   align-items: center;
