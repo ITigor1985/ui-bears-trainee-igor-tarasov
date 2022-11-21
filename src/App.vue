@@ -23,13 +23,13 @@
                 xlink:href="#gentle-wave"
                 x="48"
                 y="0"
-                fill="rgba(255, 255, 51, 0.7)"
+                fill="rgba(236, 217, 86, 1)"
               ></use>
               <use
                 xlink:href="#gentle-wave"
                 x="48"
                 y="3"
-                fill="rgba(51,51,255,0.9)"
+                fill="rgba(51,102,153,1)"
               ></use>
             </g>
           </svg>
@@ -195,7 +195,7 @@ header {
   left: 0;
   width: 100%;
   height: 60px;
-  color: #23ff5c;
+  color: #f5f8f6;
   z-index: 1;
   display: flex;
   justify-content: center;
