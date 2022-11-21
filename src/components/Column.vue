@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="column__wrapper">
     <div class="column-title">
       <form class="column-form" @submit.prevent="editColumnTitle">
         <input class="input-field" type="text" v-model.trim="newTitle" />
