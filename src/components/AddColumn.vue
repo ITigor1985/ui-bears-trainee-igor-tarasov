@@ -5,7 +5,9 @@
       v-if="!showInputField"
       @click="showInputField = true"
     >
-      <a href="#"><b-icon icon="plus"></b-icon>Add column</a>
+      <a v-on:click="warn($event)" href="#"
+        ><b-icon icon="plus"></b-icon>Add column</a
+      >
     </div>
     <form v-if="showInputField" @submit.prevent="onSubmit">
       <b-input-group id="input-group">
@@ -56,6 +58,11 @@ export default {
   methods: {
     ...mapMutations(["updateToggleLoder"]),
     ...mapActions(["getColumns", "addColumn"]),
+    warn: function (event) {
+      if (event) {
+        event.preventDefault();
+      }
+    },
     async onSubmit() {
       if (this.title.trim()) {
         this.updateToggleLoder(true);
