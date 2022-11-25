@@ -16,7 +16,10 @@
     >
       <b-form @submit.prevent="edit">
         <b-form-group label="Card Title">
-          <b-form-input class="input-field" v-model.trim="cardTitle" />
+          <b-form-input
+            class="input-field__card-title"
+            v-model.trim="cardTitle"
+          />
         </b-form-group>
         <b-form-group label="Card Description">
           <b-form-textarea
