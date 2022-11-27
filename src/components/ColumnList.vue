@@ -44,6 +44,11 @@ import { mapActions, mapMutations } from "vuex";
 import draggable from "vuedraggable";
 
 export default {
+  data() {
+    return {
+      columnIndex: 0,
+    };
+  },
   props: {
     columns: {
       type: Array,
@@ -134,7 +139,7 @@ export default {
       } else if (event.moved) {
         card = event.moved.element;
         column = targetColumn;
-
+        this.columnIndex = this.columns.indexOf(column);
         if (card.description === "") {
           await this.editCard({
             card_id: card.card_id,
@@ -158,29 +163,32 @@ export default {
       // make sure that all orderId
       // of each of the cards corresponds
       // to cards' positiong in the array
+      console.log(this.columnsArray);
       for (let col of this.columnsArray) {
-        for (let card of col.cardsArray) {
-          try {
-            if (card.description === "") {
-              await this.editCard({
-                card_id: card.card_id,
-                column_id: col.column_id,
-                title: card.title,
-                desc: "Description",
-                orderId: col.cardsArray.indexOf(card),
-              });
-            } else {
-              // this.$forceUpdate();
-              await this.editCard({
-                card_id: card.card_id,
-                column_id: col.column_id,
-                title: card.title,
-                desc: card.description,
-                orderId: col.cardsArray.indexOf(card),
-              });
+        if (this.columnsArray.indexOf(col) === this.columnIndex) {
+          for (let card of col.cardsArray) {
+            try {
+              if (card.description === "") {
+                await this.editCard({
+                  card_id: card.card_id,
+                  column_id: col.column_id,
+                  title: card.title,
+                  desc: "Description",
+                  orderId: col.cardsArray.indexOf(card),
+                });
+              } else {
+                // this.$forceUpdate();
+                await this.editCard({
+                  card_id: card.card_id,
+                  column_id: col.column_id,
+                  title: card.title,
+                  desc: card.description,
+                  orderId: col.cardsArray.indexOf(card),
+                });
+              }
+            } catch (error) {
+              console.log(error);
             }
-          } catch (error) {
-            console.log(error);
           }
         }
       }
