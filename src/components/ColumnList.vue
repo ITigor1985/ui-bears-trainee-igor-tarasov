@@ -231,9 +231,20 @@ export default {
   max-height: 65vh;
   overflow: hidden;
   overflow-y: scroll;
+  padding-right: 10px;
 }
-.draggable-card::-webkit-scrollbar {
+/* .draggable-card::-webkit-scrollbar {
   width: 0 !important;
+} */
+
+.draggable-card::-webkit-scrollbar {
+  width: 12px; /* ширина всей полосы прокрутки */
+}
+
+.draggable-card::-webkit-scrollbar-thumb {
+  background-color: blue; /* цвет бегунка */
+  border-radius: 20px; /* округлось бегунка */
+  border: 3px solid rgba(172, 169, 163); /* отступ вокруг бегунка */
 }
 
 .ghost {
