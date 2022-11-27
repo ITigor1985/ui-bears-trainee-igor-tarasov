@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="addCard">
     <form @submit.prevent="onSubmit">
       <input
         id="add-card-input"
@@ -62,4 +62,12 @@ export default {
 /* #add-card-input:hover {
   background-color: rgba(255, 255, 255, 0.829);
 } */
+
+.addCard {
+  position: absolute;
+  bottom: 15px;
+  left: 50%;
+  display: block;
+  transform: translateX(-50%);
+}
 </style>

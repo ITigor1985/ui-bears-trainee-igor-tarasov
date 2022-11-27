@@ -204,12 +204,12 @@ export default {
 }
 
 .column-card {
+  position: relative;
   min-width: 300px;
-  overflow-y: scroll;
-  overflow-x: hidden;
   max-height: 85vh;
   margin: 10px;
   padding: 20px;
+  padding-bottom: 40px;
   background: inherit;
   border-radius: 2%;
   box-shadow: 0 0.5em 1em rgba(0, 0, 0, 0.3);
@@ -227,7 +227,13 @@ export default {
 }
 
 .draggable-card {
-  min-height: 25px;
+  min-height: 5px;
+  max-height: 65vh;
+  overflow: hidden;
+  overflow-y: scroll;
+}
+.draggable-card::-webkit-scrollbar {
+  width: 0 !important;
 }
 
 .ghost {
