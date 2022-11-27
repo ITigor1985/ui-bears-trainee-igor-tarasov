@@ -163,7 +163,7 @@ export default {
       // make sure that all orderId
       // of each of the cards corresponds
       // to cards' positiong in the array
-      console.log(this.columnsArray);
+
       for (let col of this.columnsArray) {
         if (this.columnsArray.indexOf(col) === this.columnIndex) {
           for (let card of col.cardsArray) {
